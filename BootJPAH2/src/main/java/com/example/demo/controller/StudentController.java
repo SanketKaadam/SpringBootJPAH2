@@ -17,15 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dao.AlienRepo;
-import com.example.demo.model.Alien;
+import com.example.demo.dao.StudentRepo;
+import com.example.demo.model.Student;
 
 //@Controller
 @RestController
-public class AlienController 
+public class StudentController 
 {
 	@Autowired
-	AlienRepo repo;
+	StudentRepo repo;
 	
 	@RequestMapping("/")
 	public String home()
@@ -33,61 +33,61 @@ public class AlienController
 		return "home.jsp";
 	}
 	
-	@PostMapping(path="/alien", consumes = {"application/json"})
-	public Alien addAlien(@RequestBody Alien alien)
+	@PostMapping(path="/Student", consumes = {"application/json"})
+	public Student addStudent(@RequestBody Student Student)
 	{
-		repo.save(alien);
-		return alien;
+		repo.save(Student);
+		return Student;
 	}
 	
-	/*	 @RequestMapping("/getAlien")
-	public ModelAndView getAlien(@RequestParam int aid)
+	/*	 @RequestMapping("/getStudent")
+	public ModelAndView getStudent(@RequestParam int aid)
 	{
-		ModelAndView mv = new ModelAndView("showAlien.jsp");
-		Alien alien = repo.findById(aid).orElse(new Alien());
+		ModelAndView mv = new ModelAndView("showStudent.jsp");
+		Student Student = repo.findById(aid).orElse(new Student());
 		
 		System.out.println(repo.findByTech("Java"));
 		System.out.println(repo.findByAidGreaterThan(102));
 		System.out.println(repo.findByTechSorted("Java")); 
-		mv.addObject(alien);
+		mv.addObject(Student);
 		return mv; 
 	}  
 	
-	@RequestMapping("/updateAlien")
-	public ModelAndView updateAlien(Alien alien)
+	@RequestMapping("/updateStudent")
+	public ModelAndView updateStudent(Student Student)
 	{
-		ModelAndView mv = new ModelAndView("updatedAliens.jsp");
-		Alien updatedA = repo.save(alien);
+		ModelAndView mv = new ModelAndView("updatedStudents.jsp");
+		Student updatedA = repo.save(Student);
 		mv.addObject(updatedA);
 		return mv;
 	} */
 	
-	@GetMapping(path="/aliens" /*,produces = {"application/xml"} */)
-	public List<Alien> getAliens()
+	@GetMapping(path="/Students" /*,produces = {"application/xml"} */)
+	public List<Student> getStudents()
 	{
 		return repo.findAll();
 	}  
 	
-	@RequestMapping("/alien/{aid}")
-	public Optional<Alien> getAlien(@PathVariable("aid") int aid)
+	@RequestMapping("/Student/{aid}")
+	public Optional<Student> getStudent(@PathVariable("aid") int aid)
 	{
 		return repo.findById(aid);
 	}
 	
 	@SuppressWarnings("deprecation")
-	@DeleteMapping(path="/alien/{aid}")
-	public String deleteAlien(@PathVariable int aid)
+	@DeleteMapping(path="/Student/{aid}")
+	public String deleteStudent(@PathVariable int aid)
 	{
-		Alien a = repo.getOne(aid);
+		Student a = repo.getOne(aid);
 		repo.delete(a);
 		return "deleted";
 	}
 	
-	@PutMapping(path="/alien", consumes = {"application/json"})
-	public Alien saveOrUpdateAlien(@RequestBody Alien alien)
+	@PutMapping(path="/Student", consumes = {"application/json"})
+	public Student saveOrUpdateStudent(@RequestBody Student Student)
 	{
-		repo.save(alien);
-		return alien;
+		repo.save(Student);
+		return Student;
 	}
 	
 	
