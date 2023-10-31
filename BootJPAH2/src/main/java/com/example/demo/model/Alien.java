@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class Alien 
+public class Student 
 {
 	@Id
 	private int aid;
@@ -31,7 +31,7 @@ public class Alien
 	}
 	@Override
 	public String toString() {
-		return "Alien [aid=" + aid + ", aname=" + aname + ", tech=" + tech + "]";
+		return "Student [aid=" + aid + ", aname=" + aname + ", tech=" + tech + "]";
 	}
 	
 	
